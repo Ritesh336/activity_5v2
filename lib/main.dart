@@ -12,6 +12,8 @@ void main() {
 }
 
 class DigitalPetApp extends StatefulWidget {
+  const DigitalPetApp({super.key});
+
   @override
   _DigitalPetAppState createState() => _DigitalPetAppState();
 }
@@ -33,7 +35,7 @@ class _DigitalPetAppState extends State<DigitalPetApp> {
     _nameController = TextEditingController();
 
     // Start the timer to increase hunger every 30 seconds
-    _hungerTimer = Timer.periodic(Duration(seconds: 30), (timer) {
+    _hungerTimer = Timer.periodic(const Duration(seconds: 30), (timer) {
       setState(() {
         hungerLevel = (hungerLevel + 5).clamp(0, 100);
         if (hungerLevel >= 100) {
@@ -44,7 +46,7 @@ class _DigitalPetAppState extends State<DigitalPetApp> {
     });
 
     // Start the timer for the win condition check every second
-    _winConditionTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _winConditionTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (happinessLevel > 80) {
         happinessAboveThresholdDuration++;
         if (happinessAboveThresholdDuration >= 30) {
@@ -159,7 +161,7 @@ class _DigitalPetAppState extends State<DigitalPetApp> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                     height: 100,
                     width: 100,
                     child: happinessLevel < 30 ? const Image(image: AssetImage("assets/sad.png"))
